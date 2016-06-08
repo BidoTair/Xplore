@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="Xplore" customModuleProvider="target">
+            <connections>
+                <outlet property="map" destination="U8X-gU-3an" id="ygd-fG-kKP"/>
+                <outlet property="table" destination="aCE-4u-2eq" id="wtZ-ht-f3A"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="U8X-gU-3an">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="299"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="299" id="ZoQ-Vn-otM"/>
+                    </constraints>
+                </mapView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aCE-4u-2eq">
+                    <rect key="frame" x="0.0" y="301" width="600" height="299"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="U8X-gU-3an" secondAttribute="trailing" id="2cb-Db-Bsn"/>
+                <constraint firstItem="aCE-4u-2eq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IOL-q3-Vzl"/>
+                <constraint firstAttribute="trailing" secondItem="aCE-4u-2eq" secondAttribute="trailing" id="IaD-MH-Qel"/>
+                <constraint firstItem="aCE-4u-2eq" firstAttribute="height" secondItem="U8X-gU-3an" secondAttribute="height" id="Icf-J3-wzn"/>
+                <constraint firstItem="aCE-4u-2eq" firstAttribute="height" secondItem="U8X-gU-3an" secondAttribute="height" id="O1G-Ub-VQa"/>
+                <constraint firstItem="U8X-gU-3an" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RNi-CY-xCG"/>
+                <constraint firstItem="U8X-gU-3an" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cJJ-oe-GhI"/>
+                <constraint firstAttribute="bottom" secondItem="aCE-4u-2eq" secondAttribute="bottom" id="e10-NY-S2T"/>
+                <constraint firstItem="aCE-4u-2eq" firstAttribute="top" secondItem="U8X-gU-3an" secondAttribute="bottom" constant="2" id="h3s-4D-iyz"/>
+                <constraint firstItem="U8X-gU-3an" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="mpy-1S-FPF"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="mpy-1S-FPF"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="262" y="331"/>
+        </view>
+    </objects>
+</document>
