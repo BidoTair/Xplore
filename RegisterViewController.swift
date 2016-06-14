@@ -15,6 +15,9 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     
+    var email: String = ""
+    var password: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +30,12 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButtonTapped(sender: UIButton) {
+        email = emailTextField.text!
+        password = passwordTextField.text!
         
+        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.navigatetoMapView()
+
     }
 
     /*

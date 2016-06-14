@@ -19,12 +19,20 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.placeList = Place.placeList()
+        self.placeList = placesController.sharedInstance.getPlaces()
         self.setupMapView()
         self.setupTableView()
         self.table.allowsMultipleSelectionDuringEditing = false
+        self.navigationController?.navigationBar.hidden = false
+        
         
         map.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.placeList = placesController.sharedInstance.getPlaces()
+        
+        table.reloadData()
     }
     
     
@@ -38,10 +46,33 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func setupMapView() {
         map.mapType = .HybridFlyover
         map.showsBuildings = true
-//        for place in placeList {
-//            self.map.addAnnotation(place)
-//        }
         
+        for place in placeList {
+            self.map.addAnnotation(place)
+        }
+        
+//        let frame = CGRectMake(0,0, 20, 20)
+        
+        
+        
+        let plusButton = UIBarButtonItem()
+        plusButton.title = "+"
+        
+        plusButton.target = self
+        plusButton.action = "presentNewPlaceViewController"
+        
+//        if let font = UIFont(name: "AvenirNext", size: 30) {
+//            plusButton.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.Normal)
+//        }
+      
+
+        self.navigationItem.rightBarButtonItem = plusButton
+        
+    }
+    
+    func presentNewPlaceViewController() {
+        let newpvc = NewPlaceViewController(nibName: "NewPlaceViewController", bundle: nil)
+        self.presentViewController(newpvc, animated: true, completion: nil)
     }
     
     
@@ -49,6 +80,9 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+   
+    
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
        let pin = MKPinAnnotationView()
@@ -63,17 +97,20 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return pin
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return placeList.count
     }
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let spot = placeList[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier("cutomPlaceTableViewCell") as? cutomPlaceTableViewCell
         cell!.cellLabel!.text = spot.title
-        cell!.cellImage!.imageFromUrl(spot.logoURL!)
+       // cell!.cellImage!.imageFromUrl(spot.logoURL!)
         print(spot.date)
-        cell!.cellDate!.text = spot.date
+        spot.dateFormatter.dateFormat = "MM/dd/yyyy HH:mm aaa"
+        cell!.cellDate!.text = spot.dateFormatter.stringFromDate(spot.date!)
         
     
 //        else {
@@ -121,8 +158,10 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
             func deleteRow() {
+                self.map.removeAnnotation(self.placeList[indexPath.row] as MKAnnotation)
                 self.placeList.removeAtIndex(indexPath.row)
                 self.table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                
             }
             
             let alert = UIAlertController(title: "Alert", message: "Are you sure you want to delete?", preferredStyle: UIAlertControllerStyle.Alert)
@@ -132,16 +171,16 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             
             self.presentViewController(alert, animated: true, completion: nil)
             
-//            func deleteRow() {
-//                self.placeList.removeAtIndex(indexPath.row)
-//                self.table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-//            }
+
 
         }
         delete.backgroundColor = UIColor.redColor()
         
         let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
             self.placeList[indexPath.row].favorite = true
+            self.map.removeAnnotation(self.placeList[indexPath.row] as MKAnnotation)
+            self.map.addAnnotation(self.placeList[indexPath.row] as MKAnnotation)
+            
             print(self.placeList[indexPath.row].favorite)
            // tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.textColor = UIColor.yellowColor()
         }
@@ -150,15 +189,9 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return[delete,favorite]
     }
     
-//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-//            placeList.removeAtIndex(indexPath.row)
-//            table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-//            print("cell deleted")
-//        }
-//        
-//    }
+   
+    
+
     
 }
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B102CD11D10324F00DD7BE5 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B102CCF1D10324F00DD7BE5 /* NewPlaceViewController.swift */; };
+		0B102CD21D10324F00DD7BE5 /* NewPlaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B102CD01D10324F00DD7BE5 /* NewPlaceViewController.xib */; };
+		0B102CD41D1043A800DD7BE5 /* PlacesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B102CD31D1043A800DD7BE5 /* PlacesController.swift */; };
+		0B102CD61D107B7500DD7BE5 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B102CD51D107B7500DD7BE5 /* PersistanceManager.swift */; };
+		0B1B2B911D10183200912F97 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B2B901D10183200912F97 /* UserController.swift */; };
 		0B39CB0F1D0F5376009CCA40 /* LandingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B39CB0D1D0F5376009CCA40 /* LandingScreenViewController.swift */; };
 		0B39CB101D0F5376009CCA40 /* LandingScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B39CB0E1D0F5376009CCA40 /* LandingScreenViewController.xib */; };
 		0B39CB131D0F55B3009CCA40 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B39CB111D0F55B3009CCA40 /* LoginViewController.swift */; };
@@ -27,6 +32,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B102CCF1D10324F00DD7BE5 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
+		0B102CD01D10324F00DD7BE5 /* NewPlaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPlaceViewController.xib; sourceTree = "<group>"; };
+		0B102CD31D1043A800DD7BE5 /* PlacesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesController.swift; sourceTree = "<group>"; };
+		0B102CD51D107B7500DD7BE5 /* PersistanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
+		0B1B2B901D10183200912F97 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		0B39CB0D1D0F5376009CCA40 /* LandingScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingScreenViewController.swift; sourceTree = "<group>"; };
 		0B39CB0E1D0F5376009CCA40 /* LandingScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingScreenViewController.xib; sourceTree = "<group>"; };
 		0B39CB111D0F55B3009CCA40 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B102CCE1D10321F00DD7BE5 /* Persisted places */ = {
+			isa = PBXGroup;
+			children = (
+				0B102CCF1D10324F00DD7BE5 /* NewPlaceViewController.swift */,
+				0B102CD01D10324F00DD7BE5 /* NewPlaceViewController.xib */,
+			);
+			name = "Persisted places";
+			sourceTree = "<group>";
+		};
 		0B39CB0C1D0F5308009CCA40 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +120,7 @@
 		0BC0867B1D0848F500E51880 = {
 			isa = PBXGroup;
 			children = (
+				0B102CCE1D10321F00DD7BE5 /* Persisted places */,
 				0B39CB0C1D0F5308009CCA40 /* Onboarding */,
 				0B52A5461D08AED400CAD0EB /* Extensions */,
 				0B52A5411D0851DC00CAD0EB /* images */,
@@ -145,6 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				0BC086A51D084C9800E51880 /* Place.swift */,
+				0B1B2B901D10183200912F97 /* UserController.swift */,
+				0B102CD31D1043A800DD7BE5 /* PlacesController.swift */,
+				0B102CD51D107B7500DD7BE5 /* PersistanceManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -215,6 +238,7 @@
 			files = (
 				0BC086921D0848F600E51880 /* LaunchScreen.storyboard in Resources */,
 				0B52A5431D08522700CAD0EB /* star_pink.png in Resources */,
+				0B102CD21D10324F00DD7BE5 /* NewPlaceViewController.xib in Resources */,
 				0B52A5451D08523400CAD0EB /* star_black.png in Resources */,
 				0BC086A01D08499500E51880 /* MapViewController.xib in Resources */,
 				0B39CB101D0F5376009CCA40 /* LandingScreenViewController.xib in Resources */,
@@ -231,13 +255,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B1B2B911D10183200912F97 /* UserController.swift in Sources */,
 				0B39CB131D0F55B3009CCA40 /* LoginViewController.swift in Sources */,
 				0B39CB0F1D0F5376009CCA40 /* LandingScreenViewController.swift in Sources */,
+				0B102CD61D107B7500DD7BE5 /* PersistanceManager.swift in Sources */,
 				0B52A5481D08AEEC00CAD0EB /* UIExtensions.swift in Sources */,
 				0B39CB171D0F585D009CCA40 /* RegisterViewController.swift in Sources */,
 				0B52A53F1D0851B700CAD0EB /* cutomPlaceTableViewCell.swift in Sources */,
 				0BC086A61D084C9800E51880 /* Place.swift in Sources */,
+				0B102CD11D10324F00DD7BE5 /* NewPlaceViewController.swift in Sources */,
 				0BC086881D0848F500E51880 /* AppDelegate.swift in Sources */,
+				0B102CD41D1043A800DD7BE5 /* PlacesController.swift in Sources */,
 				0BC0869F1D08499500E51880 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

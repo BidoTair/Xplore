@@ -14,6 +14,10 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    var email: String = ""
+    var password: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +30,18 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapped(sender: UIButton) {
+        email = emailTextField.text!
+        password = passwordTextField.text!
+        
+        
+        if (email != "") {
+            let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.navigatetoMapView()
+        }
+        else {
+            print("Email cannot be empty")
+        }
+        
     }
 
     /*

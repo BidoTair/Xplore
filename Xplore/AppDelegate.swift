@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let mvc = MapViewController(nibName: "MapViewController", bundle: nil)
         mapViewNavigationController = UINavigationController(rootViewController: mvc)
+        mapViewNavigationController?.navigationBar.hidden = false
         
         let landingvc = LandingScreenViewController(nibName: "LandingScreenViewController", bundle: nil)
         onboardingNavigationController = UINavigationController(rootViewController: landingvc)
@@ -29,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         return true
+    }
+    
+    
+    func navigatetoMapView() {
+        self.window?.rootViewController = self.mapViewNavigationController
     }
 
     func applicationWillResignActive(application: UIApplication) {
