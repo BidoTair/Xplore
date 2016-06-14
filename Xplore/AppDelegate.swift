@@ -13,16 +13,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var mapViewNavigationController: UINavigationController?
+    var onboardingNavigationController: UINavigationController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let mvc = MapViewController(nibName: "MapViewController", bundle: nil)
-        mapViewNavigationController?.pushViewController(mvc, animated: true)
+        mapViewNavigationController = UINavigationController(rootViewController: mvc)
         
+        let landingvc = LandingScreenViewController(nibName: "LandingScreenViewController", bundle: nil)
+        onboardingNavigationController = UINavigationController(rootViewController: landingvc)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = self.mapViewNavigationController
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = mvc
+        
         
         return true
     }

@@ -10,14 +10,11 @@ import UIKit
 
 class cutomPlaceTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var star1: UIButton!
-    @IBOutlet weak var star2: UIButton!
-    @IBOutlet weak var star3: UIButton!
-    @IBOutlet weak var star4: UIButton!
-    
-    @IBOutlet weak var cellLabel: UILabel!
-    
-    
+   
+    var cellImage: UIImageView?
+    var cellLabel: UILabel?
+    var cellDate: UILabel?
+
     
     
     
@@ -31,5 +28,25 @@ class cutomPlaceTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+   
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        cellImage = UIImageView(frame: CGRectMake(0, 0, 102, 88))
+        self.addSubview(cellImage!)
+        
+        cellLabel = UILabel(frame: CGRectMake(116, 0, 190, 21))
+        self.addSubview(cellLabel!)
+        
+        cellDate = UILabel(frame: CGRectMake(110, 45, 195, 29))
+        self.addSubview(cellDate!)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+ 
     
 }
