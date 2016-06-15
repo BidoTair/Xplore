@@ -20,14 +20,21 @@ class NewPlaceViewController: UIViewController {
     @IBOutlet weak var longField: UITextField!
     
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.locationManager?.stopUpdatingLocation()
+        let coordinate = appDelegate.getcoordinate()
+        latField.text = "\(coordinate.0)"
+        longField.text = "\(coordinate.1)"
         // Do any additional setup after loading the view.
     }
+    
+
+    
+
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

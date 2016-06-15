@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     var mapViewNavigationController: UINavigationController?
     var onboardingNavigationController: UINavigationController?
+    
+    var locationManager: CLLocationManager?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -24,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let landingvc = LandingScreenViewController(nibName: "LandingScreenViewController", bundle: nil)
         onboardingNavigationController = UINavigationController(rootViewController: landingvc)
         
+        self.locationManager = CLLocationManager()
+        self.locationManager!.delegate = self
+        
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = self.mapViewNavigationController
         self.window?.makeKeyAndVisible()
@@ -33,9 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    
     func navigatetoMapView() {
         self.window?.rootViewController = self.mapViewNavigationController
     }
+    
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -57,6 +68,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func requestAccess() {
+     locationManager!.requestAlwaysAuthorization()
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch status {
+        case .NotDetermined:
+            locationManager!.requestAlwaysAuthorization()
+            break
+        case .AuthorizedWhenInUse:
+            locationManager!.stopUpdatingLocation()
+            break
+        case .AuthorizedAlways:
+            locationManager!.startUpdatingLocation()
+            break
+        case .Restricted:
+            // restricted by e.g. parental controls. User can't enable Location Services
+            break
+        case .Denied:
+            // user denied your app access to Location Services, but can grant access from Settings.app
+            break
+        default:
+            break
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations.last! as CLLocation
+//        let lat = location.coordinate.latitude as Double
+//        let long = location.coordinate.longitude as Double
+        
+        
+    }
+    
+    func getcoordinate() -> (CLLocationDegrees,CLLocationDegrees) {
+        let lat = locationManager!.location?.coordinate.latitude
+        let long = locationManager!.location?.coordinate.longitude
+        
+        return (lat!,long!)
     }
 
 

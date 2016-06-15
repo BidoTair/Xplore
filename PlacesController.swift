@@ -48,15 +48,39 @@ class placesController {
     }
     
     func getPlaces() -> [Place] {
+        // checks if places is empty and gets places from memory
         if (places.isEmpty) {
             self.readPlacesFromMemory()
         }
-        
+        // if places are still empty return test places
         if (places.isEmpty) {
             return Place.placeList()
         }
         else {
             return places
+        }
+    }
+    
+    
+    func changeFavoritePlace(place:Place) {
+        getPlaces()
+        
+        // the index is found if the title and the date are the same. That's enough to know
+        if let index = places.indexOf({$0.title == place.title && $0.date == place.date})
+        {
+            let placeToUpdate = places[index]
+            
+            if placeToUpdate.favorite // unfavorite it
+            {
+                placeToUpdate.favorite = false
+            }
+            else // favorite it
+            {
+                placeToUpdate.favorite = true
+            }
+            
+            // update the array
+            PersistenceManager.saveNSArray(places, fileName: "placesVisited")
         }
     }
     

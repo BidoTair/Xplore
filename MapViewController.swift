@@ -14,6 +14,7 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var table: UITableView!
     
+    
     var placeList: [Place] = []
     
     override func viewDidLoad() {
@@ -25,6 +26,8 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.table.allowsMultipleSelectionDuringEditing = false
         self.navigationController?.navigationBar.hidden = false
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.requestAccess()
         
         map.delegate = self
     }
@@ -34,6 +37,20 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         table.reloadData()
     }
+    
+    
+    
+
+    
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let location = locations.last! as CLLocation
+//        
+//        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+//     //   map.showsUserLocation = true
+//        
+//       self.map.setRegion(region, animated: true)
+//    }
     
     
     func setupTableView() {
@@ -59,7 +76,7 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         plusButton.title = "+"
         
         plusButton.target = self
-        plusButton.action = "presentNewPlaceViewController"
+        plusButton.action = #selector(self.presentNewPlaceViewController)
         
 //        if let font = UIFont(name: "AvenirNext", size: 30) {
 //            plusButton.setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.Normal)
@@ -177,10 +194,13 @@ class MapViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         delete.backgroundColor = UIColor.redColor()
         
         let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+            
             self.placeList[indexPath.row].favorite = true
             self.map.removeAnnotation(self.placeList[indexPath.row] as MKAnnotation)
             self.map.addAnnotation(self.placeList[indexPath.row] as MKAnnotation)
             
+            
+            placesController.sharedInstance.changeFavoritePlace(self.placeList[indexPath.row])
             print(self.placeList[indexPath.row].favorite)
            // tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.textColor = UIColor.yellowColor()
         }
