@@ -1,8 +1,8 @@
 # Xplore
-Xplore is the first app I ever made. It is a modern twist on the classic Tic-Tac-Toe game which allows you to play with others over a network. Check it out!
+Xplore is an app that allows you to make geo-localized and locally stored memory entries so that you can keep track of all the places you have been to in the world!
 
 ## Screenshots
-![](http://i.imgur.com/QmRFBqF.png)
+![](http://i.imgur.com/7nWboD8.png)
 
 ## Authors
 **Abdulghafar Al Tair** - [Github Profile](https://github.com/BidoTair) 
